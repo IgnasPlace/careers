@@ -5,6 +5,7 @@ import MenuOverlay from "./MenuOverlay";
 import MenuButton from "../ui/MenuButton";
 import Link from "next/link";
 import HeaderLinks from "./HeaderLinks";
+import SpontaneousButton from "../ui/SpontaneousButton";
 
 const navLinks = [
   { name: "Jobs", link: "/jobs" },
@@ -15,8 +16,11 @@ const navLinks = [
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpened((prev) => !prev);
+  const openMenu = () => {
+    setMenuOpened(true);
+  };
+  const closeMenu = () => {
+    setMenuOpened(false);
   };
 
   return (
@@ -34,21 +38,18 @@ const Header = () => {
         </div>
 
         <div className="flex">
-          <div className="group h-14 hidden relative md:block">
-            <div className="absolute h-full w-full top-0 left-0 bg-color1 border-2 border-colorWhite rounded-full"></div>
-
-            <Link
+          <div className="hidden md:block">
+            <SpontaneousButton
+              title="Spontaneous Apply"
               href="/apply"
-              className="relative flex items-center justify-center h-14 px-6 rounded-full bg-colorWhite text-color1 text-sm duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-1.5"
-            >
-              Spontaneous application
-            </Link>
+              action={closeMenu}
+            />
           </div>
-          <MenuButton toggle={toggleMenu} />
+          <MenuButton toggle={openMenu} />
         </div>
 
         {/* overlay */}
-        <MenuOverlay menuOpened={menuOpened} toggleMenu={toggleMenu} />
+        <MenuOverlay menuOpened={menuOpened} closeMenu={closeMenu} />
       </nav>
     </header>
   );

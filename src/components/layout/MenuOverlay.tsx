@@ -1,9 +1,10 @@
 import Link from "next/link";
 import React from "react";
+import SpontaneousButton from "../ui/SpontaneousButton";
 
 type Props = {
   menuOpened: boolean;
-  toggleMenu: () => void;
+  closeMenu: () => void;
 };
 
 const MenuOverlay = (props: Props) => {
@@ -11,7 +12,7 @@ const MenuOverlay = (props: Props) => {
     <div
       className={`${
         props.menuOpened ? "translate-x-0" : "translate-x-full"
-      } fixed duration-300 inset-0 bg-color1 lg:hidden`}
+      } fixed duration-300 inset-0 bg-color1 lg:hidden z-50`}
     >
       <div className=" max-w-2xl mx-auto">
         <div className="flex justify-between align-middle px-5 py-4">
@@ -22,8 +23,8 @@ const MenuOverlay = (props: Props) => {
             </span>
           </div>
           <button
-            className="h-7 w-7 self-center flex flex-col items-center justify-center gap-1"
-            onClick={props.toggleMenu}
+            className=" h-7 w-7 self-center flex flex-col items-center justify-center gap-1"
+            onClick={props.closeMenu}
           >
             <div className="bg-color6 w-5 h-0.5 rotate-45 rounded translate-y-1"></div>
             <div className="bg-color6 w-5 h-0.5 -rotate-45 rounded -translate-y-0.5"></div>
@@ -37,7 +38,7 @@ const MenuOverlay = (props: Props) => {
             <Link
               href={"/jobs"}
               className=" text-2xl"
-              onClick={props.toggleMenu}
+              onClick={props.closeMenu}
             >
               All our jobs
             </Link>
@@ -50,25 +51,25 @@ const MenuOverlay = (props: Props) => {
             <Link
               href={"/journey"}
               className=" text-2xl"
-              onClick={props.toggleMenu}
+              onClick={props.closeMenu}
             >
               Journey
             </Link>
             <Link
               href={"/people-stories"}
               className=" text-2xl"
-              onClick={props.toggleMenu}
+              onClick={props.closeMenu}
             >
               Stories
             </Link>
           </div>
           <hr className="border-color7 opacity-30" />
           <p className="text-color7 text-xl font-semibold">Resources</p>
-          <div className="flex flex-col">
+          <div className="flex flex-col mb-2">
             <Link
               href={"/privacy"}
               className=" text-2xl"
-              onClick={props.toggleMenu}
+              onClick={props.closeMenu}
             >
               Privacy
             </Link>
@@ -76,11 +77,16 @@ const MenuOverlay = (props: Props) => {
               href={"https:ignasplace.com"}
               target="_blank"
               className=" text-2xl"
-              onClick={props.toggleMenu}
+              onClick={props.closeMenu}
             >
               IgnasPlace.com
             </Link>
           </div>
+          <SpontaneousButton
+            title="Spontaneous Apply"
+            href={"/apply"}
+            action={props.closeMenu}
+          />
         </div>
       </div>
     </div>
