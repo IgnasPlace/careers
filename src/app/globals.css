@@ -4,7 +4,10 @@
 
 :root {
   --color-1: #272774;
+  /* --color-103: rgba(62, 89, 116, 0.4); */
   --color-103: rgb(39, 39, 116, 0.4);
+  /* --color-2: #dcd1f4;
+  --color-3: #bba0ef; */
   --color-2: #feefe9;
   --color-3: #eac3b3;
   --color-4: #eef1f7;

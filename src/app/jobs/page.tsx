@@ -1,10 +1,4 @@
-"use client";
-
-import ClearInputButton from "@/components/ui/ClearInputButton";
-import Sugestions from "@/components/ui/Sugestions";
-import { useState } from "react";
-import { IoIosSearch } from "react-icons/io";
-import { IoLocationOutline } from "react-icons/io5";
+import Search from "@/components/ui/Search";
 
 const jobFields = [
   "3D Animation",
@@ -37,95 +31,75 @@ const locations = [
   "New Zealand",
 ];
 
+const jobsList = [
+  {
+    id: "20380",
+    title: "System Engineer - Aerospazio [italian speaker mandatory]",
+    description: [
+      {
+        title: "As a regulatory affairs specialist you will be responsible for",
+        fields: [
+          "Preparing and updating technical regulatory documents according to documentation standard.",
+          "Creation, review and approval of regulatory requirements and technical files.",
+          "Maintenance of regulatory documents in document-management systems (e.g., Documentum) and document-sharing systems (e.g., SharePoint).",
+        ],
+      },
+      {
+        title: "The Ideal Profile",
+        fields: [
+          "You have received an engineering degree or equivalent.",
+          "More than 1year of experience within the Medical device industry on Q&R related activities",
+          "You are proactive, have good communication skills, and are able to change people mind-set in the way of efficient working.",
+        ],
+      },
+    ],
+    location: {
+      country: "Netherlands",
+      city: "Eindhoven",
+    },
+    languages: ["English"],
+    jobFields: ["CAPA", "Quality Management", "Lean 6sigma"],
+    createdAt: "03/05/2023",
+  },
+  {
+    id: "24937",
+    title: "HCMC - .NET Developer (Junior / Middle)",
+    description: [
+      {
+        title: "About the job",
+        fields: [
+          "Develop and maintain software systems based on Microsoft .NET and related technologies.",
+          "Confer with system analysts, programmers and others to design system and to obtain information on project limitations and capabilities, performance requirements and interfaces.",
+          "Develop and direct software system testing and validation procedures, programming and documentation.",
+        ],
+      },
+      {
+        title: "About you",
+        fields: [
+          "Academic degree in Information Technology, Software Engineering or related technical fields.",
+          "2-4 years of working experience in .NET web technologies (.NET 5/6, .NET Core, .NET Framework, ASP.NET, etc.).",
+          "Be able to work at Front-end with HTML5, CSS3 and Bootstrap.",
+          "Experience with JavaScript (Angular / ReactJS / VueJS) will be a great plus.",
+        ],
+      },
+    ],
+    location: {
+      country: "Vietnam",
+      city: "Ho Chi Minh City",
+    },
+    languages: ["English", "Vietnamese"],
+    jobFields: ["Javascript", "C#", "Object-oriented programming", "SOLID"],
+    createdAt: "10/05/2023",
+  },
+];
+
 const Jobs = () => {
-  const [searchText, setSearchText] = useState("");
-  const [searchLocation, setSearchLocation] = useState("");
-  const [selectedField, setSelectedField] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
-  const [keywordInputFocused, setKeywordInputFocused] = useState(false);
-  const [locationInputFocused, setLocationInputFocused] = useState(false);
-
-  const filteredJobFields = jobFields.filter((field) =>
-    field.toLocaleLowerCase().includes(searchText.toLocaleLowerCase())
-  );
-  const filteredLocationFields = locations
-    .filter((field) =>
-      field.toLocaleLowerCase().includes(searchLocation.toLocaleLowerCase())
-    )
-    .sort();
-
-  const selectFieldHandler = (word: string) => {
-    setSelectedField(word);
-    setSearchText("");
-  };
-  const selectLocationHandler = (word: string) => {
-    setSelectedLocation(word);
-    setSearchLocation("");
-  };
-
   return (
     <main className=" min-h-screen bg-color2">
       <div className=" h-12 bg-color1"></div>
       <div className="max-w-[1400px] mx-auto -mt-10">
-        <div className="flex justify-between mx-3 -mt-10 h-20 text-sm bg-colorWhite rounded-full border-4 border-color1">
-          <div className="flex grow gap-1 mx-auto">
-            <div className="w-1/2 relative flex items-center px-4  rounded-full ">
-              <div>
-                <IoIosSearch size="1.4rem" />
-              </div>
-
-              <input
-                value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
-                onFocus={() => setKeywordInputFocused(true)}
-                onBlur={() => setKeywordInputFocused(false)}
-                placeholder="Start with a keyword.."
-                className="pl-2 w-full outline-none text-color1 bg-transparent"
-              />
-              {searchText && (
-                <ClearInputButton action={() => setSearchText("")} />
-              )}
-              {searchText && filteredJobFields.length > 0 && (
-                <Sugestions
-                  fields={filteredJobFields}
-                  action={selectFieldHandler}
-                />
-              )}
-            </div>
-            <div className="w-1/2 flex relative items-center px-4 rounded-full ">
-              <div>
-                <IoLocationOutline size="1.4rem" />
-              </div>
-
-              <input
-                value={searchLocation}
-                onChange={(e) => setSearchLocation(e.target.value)}
-                onFocus={() => setLocationInputFocused(true)}
-                onBlur={() => setLocationInputFocused(false)}
-                placeholder="Search location.."
-                className="pl-2 py-6 w-full outline-none text-color1 bg-transparent"
-              />
-              {searchLocation && (
-                <ClearInputButton action={() => setSearchLocation("")} />
-              )}
-              {searchLocation && filteredLocationFields.length > 0 && (
-                <Sugestions
-                  fields={filteredLocationFields}
-                  action={selectLocationHandler}
-                />
-              )}
-            </div>
-          </div>
-          <div
-            className="w-20 h-20 flex items-center justify-center
-            rounded-full border-4 overflow-hidden border-color1 translate-x-1 -translate-y-1 bg-color1 "
-          >
-            {/* <div className="w-20 h-20 flex bg-color1 text-colorWhite rounded-full items-center justify-center group-hover:w-14 group-hover:h-14 duration-300 cursor-pointer"> */}
-            <div className="w-20 h-20 flex bg-color1 text-colorWhite rounded-full items-center justify-center duration-300 cursor-pointer">
-              <IoIosSearch size="1.8rem" title="Search" />
-            </div>
-          </div>
-        </div>
+        <Search jobFields={jobFields} locations={locations} />
+        
       </div>
     </main>
   );

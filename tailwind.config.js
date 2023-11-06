@@ -17,6 +17,17 @@ module.exports = {
     },
     extend: {
       colors: {
+        // color1: "#3E5974",
+        // color102: "#2e2e8d;",
+        // color103: "#2727744a",
+        // color2: "#DCD1F4",
+        // color3: "#BE93C6",
+        // color4: "#EEF1F7",
+        // colorWhite: "#FFFFFF",
+        // color6: "#E2E2EB",
+        // color7: "#9B9DBD",
+        // color8: "#EDF0F6",
+
         color1: "#272774",
         color102: "#2e2e8d;",
         color103: "#2727744a",
